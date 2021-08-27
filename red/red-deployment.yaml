@@ -19,7 +19,7 @@ spec:
           image: nginx:1.19.2
           volumeMounts:
             - name: html
-              mountPath: /usr/share/nginx/html
+              mountPath: /usr/share/nginx/html/red
           resources:
             requests:
               cpu: 100m
