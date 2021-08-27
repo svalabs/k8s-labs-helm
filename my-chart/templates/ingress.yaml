@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: my-{{ .Values.color }}-ingress
+  name: {{ .Chart.Name }}-{{ .Release.Name }}
   annotations:
     kubernetes.io/ingress.class: traefik
     ingress.kubernetes.io/ssl-redirect: "false"
@@ -10,7 +10,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /{{ .Values.color }}
+          - path: /
             backend:
-              serviceName: my-{{ .Values.color }}-service
+              serviceName: {{ .Chart.Name }}-{{ .Release.Name }}
               servicePort: 80

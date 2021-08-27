@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-{{ .Values.color }}-deployment
+  name: {{ .Chart.Name }}-{{ .Release.Name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: my-{{ .Values.color }}-deployment
+      app: {{ .Chart.Name }}-{{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: my-{{ .Values.color }}-deployment
+        app: {{ .Chart.Name }}-{{ .Release.Name }}
     spec:
       containers:
         - name: my-nginx
           image: nginx:1.19.2
           volumeMounts:
             - name: html
-              mountPath: /usr/share/nginx/html/{{ .Values.color }}
+              mountPath: /usr/share/nginx/html
           resources:
             requests:
               cpu: 100m
@@ -28,7 +28,7 @@ spec:
       volumes:
         - name: html
           configMap:
-            name: my-{{ .Values.color }}-configmap
+            name: {{ .Chart.Name }}-{{ .Release.Name }}
             items:
               - key: body
                 path: index.html
