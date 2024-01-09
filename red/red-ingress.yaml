@@ -3,10 +3,10 @@ kind: Ingress
 metadata:
   name: red
   annotations:
-    kubernetes.io/ingress.class: traefik
     ingress.kubernetes.io/ssl-redirect: "false"
     ingress.kubernetes.io/rewrite-target: "/"
 spec:
+  ingressClassName: traefik
   rules:
     - http:
         paths:
